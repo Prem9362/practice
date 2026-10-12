@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Management Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <div><p class="eyebrow">FASTAPI CRUD PROJECT</p><h1>Student Management</h1><p class="subhead">A simple dashboard to manage student records.</p></div>
+      <div id="apiStatus" class="api-status"><span class="dot"></span> Checking API…</div>
+    </div>
+  </header>
+  <main class="wrap">
+    <section class="stats">
+      <article class="stat"><span>Total students</span><strong id="totalCount">—</strong></article>
+      <article class="stat"><span>Placed</span><strong id="placedCount">—</strong></article>
+      <article class="stat"><span>Not placed</span><strong id="notPlacedCount">—</strong></article>
+    </section>
+
+    <section class="panel">
+      <div class="section-head"><div><p class="eyebrow">DATABASE VIEW</p><h2>All student records</h2></div><button id="refreshBtn" class="btn secondary" type="button">↻ Refresh</button></div>
+      <div class="table-scroll"><table><thead><tr><th>Roll No.</th><th>Name</th><th>Marks</th><th>Address</th><th>Placement</th></tr></thead><tbody id="studentsBody"><tr><td colspan="5" class="empty">Loading records…</td></tr></tbody></table></div>
+    </section>
+
+    <section class="grid">
+      <article class="panel">
+        <div class="card-head"><span class="icon blue">＋</span><div><h2>Add student</h2><p>Create a new student record.</p></div></div>
+        <form id="addForm">
+          <div class="fields">
+            <label>Roll number<input name="roll" type="number" min="1" required placeholder="e.g. 4"></label>
+            <label>Student name<input name="name" required placeholder="e.g. Asha"></label>
+            <label>Marks<input name="marks" type="number" min="0" max="100" step="any" required placeholder="0–100"></label>
+            <label>Address<input name="adress" required placeholder="e.g. Pune"></label>
+            <label class="wide">Placement status<select name="placed"><option value="false">Not placed</option><option value="true">Placed</option></select></label>
+          </div>
+          <button class="btn primary" type="submit">Add student</button>
+        </form>
+      </article>
+
+      <article class="panel">
+        <div class="card-head"><span class="icon green">⌕</span><div><h2>Get student</h2><p>Search by roll number.</p></div></div>
+        <form id="getForm" class="inline-form"><label>Roll number<input name="roll" type="number" min="1" required placeholder="Enter roll number"></label><button class="btn primary" type="submit">Find</button></form>
+        <div id="getResult" class="result" aria-live="polite">Student details will appear here.</div>
+      </article>
+
+      <article class="panel">
+        <div class="card-head"><span class="icon amber">✎</span><div><h2>Update student</h2><p>Update an existing record.</p></div></div>
+        <form id="updateForm">
+          <div class="fields">
+            <label>Roll number to update<input name="urlRoll" type="number" min="1" required placeholder="Existing roll number"></label>
+            <label>Student name<input name="name" required placeholder="Student name"></label>
+            <label>Marks<input name="marks" type="number" min="0" max="100" step="any" required placeholder="0–100"></label>
+            <label>Address<input name="adress" required placeholder="City"></label>
+            <label class="wide">Placement status<select name="placed"><option value="false">Not placed</option><option value="true">Placed</option></select></label>
+          </div>
+          <p class="hint">The roll number is sent in the URL, not in the request body.</p>
+          <button class="btn primary" type="submit">Update student</button>
+        </form>
+      </article>
+
+      <article class="panel">
+        <div class="card-head"><span class="icon red">⌫</span><div><h2>Delete student</h2><p>Remove a record by roll number.</p></div></div>
+        <form id="deleteForm" class="inline-form"><label>Roll number<input name="roll" type="number" min="1" required placeholder="Enter roll number"></label><button class="btn danger" type="submit">Delete</button></form>
+        <p class="hint warning">You will be asked to confirm before deletion.</p>
+      </article>
+    </section>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <footer>HTML + CSS + JavaScript · FastAPI backend · JSON file storage</footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
