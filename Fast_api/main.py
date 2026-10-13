@@ -4,13 +4,12 @@ from pydantic import BaseModel
 app = FastAPI()
 
 
-# Item model
 class Item(BaseModel):
     name: str
     price: float
 
 
-# Temporary storage
+
 items = {}
 
 
