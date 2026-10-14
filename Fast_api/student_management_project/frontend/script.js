@@ -1,7 +1,7 @@
-// Frontend-to-backend connection. Keep the FastAPI server running on port 8000.
 const API = "http://127.0.0.1:8000";
 const $ = (id) => document.getElementById(id);
 let toastTimer;
+//frontend
 
 function showToast(message, error = false) {
   $("toast").textContent = message;
