@@ -8,8 +8,6 @@ class Item(BaseModel):
     name: str
     price: float
 
-
-
 items = {}
 
 
